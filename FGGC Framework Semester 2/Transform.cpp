@@ -9,6 +9,8 @@ Transform::Transform()
 	_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	_velocity = { 0.0f, 0.0f, 0.001f };
 	_acceleration = { 0.0f, 0.0f, 0.001f };
+	_spinVelocity = { 0.0f, 0.001f, 0.0f };
+	_spinAccel = { 0.0f, 0.001f, 0.0f };
 }
 
 

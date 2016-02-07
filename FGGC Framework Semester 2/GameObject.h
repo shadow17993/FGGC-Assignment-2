@@ -16,6 +16,7 @@ class GameObject
 {
 public:
 	GameObject(string type, Transform* transform, ParticleModel* particleModel, Appearance* appearance);
+	GameObject(string type, Transform* transform, Appearance* appearance);
 	~GameObject();
 
 	string GetType() const { return _type; }
@@ -34,5 +35,7 @@ private:
 	Appearance * _appearance;
 
 	string _type;
+
+	bool isMoving;
 };
 

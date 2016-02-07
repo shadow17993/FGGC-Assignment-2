@@ -32,7 +32,7 @@ public:
 	XMFLOAT3 GetRotation() const { return _rotation; }
 
 
-	void setAccel(XMFLOAT3 _acceleration) { _acceleration = _acceleration; }
+	void setAccel(XMFLOAT3 acceleration) { _acceleration = acceleration; }
 	void setAccel(float x, float y, float z) { _acceleration = { x, y, z }; }
 
 	XMFLOAT3 getAccel() { return _acceleration; }
@@ -44,6 +44,18 @@ public:
 	XMFLOAT3 getVel() { return _velocity; }
 
 
+	void setSpinAccel(XMFLOAT3 acceleration) { _spinAccel = acceleration; }
+	void setSpinAccel(float x, float y, float z) { _spinAccel = { x, y, z }; }
+
+	XMFLOAT3 getSpinAccel() { return _spinAccel; }
+
+
+	void setSpinVel(XMFLOAT3 velocity) { _spinVelocity = velocity; }
+	void setSpinVel(float x, float y, float z) { _spinVelocity = { x, y, z }; }
+
+	XMFLOAT3 getSpinVel() { return _spinVelocity; }
+
+
 	void Update(float t);
 
 private:
@@ -52,6 +64,8 @@ private:
 	XMFLOAT3 _scale;
 	XMFLOAT3 _velocity;
 	XMFLOAT3 _acceleration;
+	XMFLOAT3 _spinVelocity;
+	XMFLOAT3 _spinAccel;
 
 	XMFLOAT4X4 _world;
 

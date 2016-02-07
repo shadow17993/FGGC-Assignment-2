@@ -5,6 +5,7 @@ ParticleModel::ParticleModel(Transform* transform) : _transform(transform)
 {
 	
 	isConstVel = true;
+	isSpinConstVel = true;
 }
 
 
@@ -43,11 +44,36 @@ void ParticleModel::moveConstVel(float t)
 							_transform->GetPosition().z + _transform->getVel().z * t);
 }
 
+void ParticleModel::spinConstVel(float t)
+{
+	_transform->SetRotation(_transform->GetRotation().x + _transform->getSpinVel().x * t,
+		_transform->GetRotation().y + _transform->getSpinVel().y * t,
+		_transform->GetRotation().z + _transform->getSpinVel().z * t);
+}
+
+void ParticleModel::spinConstAccel(float t)
+{
+	_transform->SetRotation(_transform->GetRotation().x + _transform->getSpinVel().x * t + 0.5f * _transform->getSpinAccel().x  * t * t,
+		_transform->GetRotation().y + _transform->getSpinVel().y * t + 0.5f * _transform->getSpinAccel().y * t * t,
+		_transform->GetRotation().z + _transform->getSpinVel().z * t + 0.5f * _transform->getSpinAccel().z * t * t);
+
+	_transform->setSpinVel(_transform->getVel().x + _transform->getSpinAccel().x * t,
+		_transform->getVel().y + _transform->getSpinAccel().y * t,
+		_transform->getVel().z + _transform->getSpinAccel().z * t);
+}
+
+
+
 void ParticleModel::Update(float t)
 {
 	if (GetAsyncKeyState('S'))
 	{
 		isConstVel = !isConstVel;
+	}
+
+	if (GetAsyncKeyState('R'))
+	{
+		isSpinConstVel = !isSpinConstVel;
 	}
 
 	if (isConstVel)
@@ -57,5 +83,14 @@ void ParticleModel::Update(float t)
 	else
 	{
 		moveConstAccel(t);
+	}
+
+	if (isSpinConstVel)
+	{
+		spinConstVel(t);
+	}
+	else
+	{
+		spinConstAccel(t);
 	}
 }

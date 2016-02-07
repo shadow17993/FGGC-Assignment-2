@@ -16,6 +16,9 @@ public:
 	void moveConstVel(float t);
 	void moveConstAccel(float t);
 
+	void spinConstVel(float t);
+	void spinConstAccel(float t);
+
 	void Update(float t);
 
 
@@ -25,5 +28,6 @@ private:
 	
 
 	bool isConstVel;
+	bool isSpinConstVel;
 };
 
