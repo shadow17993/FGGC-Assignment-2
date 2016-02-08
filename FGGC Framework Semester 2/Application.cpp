@@ -164,7 +164,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 		cubeTransform->SetScale(0.5f, 0.5f, 0.5f);
 		cubeTransform->SetPosition(-4.0f + (i * 2.0f), 0.5f, 10.0f);
 
-		ParticleModel * particleModel = new ParticleModel(cubeTransform);
+		ParticleModel * particleModel = new ParticleModel(cubeTransform, true, { 0.0f, 0.0f, 0.001f }, { 0.0f, 0.0f, 0.001f });
 
 		gameObject = new GameObject("Cube " + i, cubeTransform, particleModel, cubeAppearance);
 
