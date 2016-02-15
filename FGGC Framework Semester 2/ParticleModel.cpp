@@ -3,8 +3,8 @@
 
 ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 initVel, XMFLOAT3 initAccel) : _transform(transform)
 {
-	isConstVel = useConstVel;
-	isSpinConstVel = true;
+	_isConstVel = useConstVel;
+	_isSpinConstVel = true;
 
 	/*_velocity = { 0.0f, 0.0f, 0.001f };
 	_acceleration = { 0.0f, 0.0f, 0.001f };*/
@@ -76,21 +76,39 @@ void ParticleModel::spinConstAccel(float t)
 }
 
 
+void ParticleModel::UpdateNetForce()
+{
+	_netForce.x += _force.x;
+	_netForce.y += _force.y;
+	_netForce.z += _force.z;
+}
+
+
+void ParticleModel::UpdateAccel()
+{
+	_acceleration.x = _netForce.x / _mass;
+	_acceleration.y = _netForce.y / _mass;
+	_acceleration.z = _netForce.z / _mass;
+}
+
 
 void ParticleModel::Update(float t)
 {
 	if (GetAsyncKeyState('S'))
 	{
-		isConstVel = !isConstVel;
+		_isConstVel = !_isConstVel;
 	}
 
 	if (GetAsyncKeyState('R'))
 	{
-		isSpinConstVel = !isSpinConstVel;
+		_isSpinConstVel = !_isSpinConstVel;
 	}
 
+	UpdateNetForce();
 
-	if (isConstVel)
+	UpdateAccel();
+
+	if (_isConstVel)
 	{
 		moveConstVel(t);
 	}
@@ -99,7 +117,7 @@ void ParticleModel::Update(float t)
 		moveConstAccel(t);
 	}
 
-	if (isSpinConstVel)
+	if (_isSpinConstVel)
 	{
 		spinConstVel(t);
 	}

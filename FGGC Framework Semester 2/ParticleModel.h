@@ -34,12 +34,15 @@ public:
 
 	void setForce(XMFLOAT3 force) { _force = force; }
 	void setForce(float x, float y, float z) { _force = { x, y, z }; }
-	XMFLOAT3 getSpinVel() { return _spinVelocity; }
+	XMFLOAT3 getForce() { return _force; }
 
 
 	void setMass(float mass) { _mass = mass; }
 	float getMass() { return _mass; }
 
+
+	bool setIsConstVel(bool isConstVel) { _isConstVel = isConstVel; }
+	bool setIsSpinConstVel(bool isSpinConstVel) { _isSpinConstVel = isSpinConstVel; }
 
 	void Move(float x, float y, float z);
 	void moveConstVel(float t);
@@ -47,6 +50,10 @@ public:
 
 	void spinConstVel(float t);
 	void spinConstAccel(float t);
+
+	void UpdateNetForce();
+
+	void UpdateAccel();
 
 	void Update(float t);
 
@@ -58,10 +65,11 @@ private:
 	XMFLOAT3 _spinVelocity;
 	XMFLOAT3 _spinAccel;
 	XMFLOAT3 _force;
+	XMFLOAT3 _netForce;
 	float _mass;
 	
 
-	bool isConstVel;
-	bool isSpinConstVel;
+	bool _isConstVel;
+	bool _isSpinConstVel;
 };
 
