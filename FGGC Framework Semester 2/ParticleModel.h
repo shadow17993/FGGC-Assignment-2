@@ -40,6 +40,22 @@ public:
 	void setMass(float mass) { _mass = mass; }
 	float getMass() { return _mass; }
 
+	void setWeight(float weight) { _weight = weight; }
+	float getWeight() { return _weight; }
+
+	void setUpforce(float upforce){ _upforce = upforce; }
+	float getUpforce() {
+		if (_initPos.y >= _transform->GetPosition().y)
+		{
+			_upforce = 0;
+			return _upforce;
+		}
+		else
+		{
+			return _upforce;
+		}
+	}
+	
 
 	bool setIsConstVel(bool isConstVel) { _isConstVel = isConstVel; }
 	bool setIsSpinConstVel(bool isSpinConstVel) { _isSpinConstVel = isSpinConstVel; }
@@ -55,11 +71,14 @@ public:
 
 	void UpdateAccel();
 
+	void UpdateVertThrust();
+
 	void Update(float t);
 
 
 private:
 	Transform* _transform;
+	XMFLOAT3 _initPos;
 	XMFLOAT3 _velocity;
 	XMFLOAT3 _acceleration;
 	XMFLOAT3 _spinVelocity;
@@ -67,6 +86,9 @@ private:
 	XMFLOAT3 _force;
 	XMFLOAT3 _netForce;
 	float _mass;
+	float _gravity;
+	float _weight;
+	float _upforce;
 	
 
 	bool _isConstVel;

@@ -15,6 +15,8 @@ ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 in
 	_spinAccel = { 0.0f, 0.001f, 0.0f };
 	_force = { 0.0f, 0.0f, 0.0f };
 	_mass = 1.0f;
+	_gravity = -9.8f;
+	_initPos = _transform->GetPosition();
 }
 
 
@@ -91,6 +93,10 @@ void ParticleModel::UpdateAccel()
 	_acceleration.z = _netForce.z / _mass;
 }
 
+void ParticleModel::UpdateVertThrust()
+{
+
+}
 
 void ParticleModel::Update(float t)
 {
