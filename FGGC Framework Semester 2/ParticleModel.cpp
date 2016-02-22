@@ -16,6 +16,7 @@ ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 in
 	_force = { 0.0f, 0.0f, 0.0f };
 	_mass = 1.0f;
 	_gravity = -9.8f;
+	_weight = _mass * _gravity;
 	_initPos = _transform->GetPosition();
 }
 
@@ -88,14 +89,16 @@ void ParticleModel::UpdateNetForce()
 
 void ParticleModel::UpdateAccel()
 {
-	_acceleration.x = _netForce.x / _mass;
-	_acceleration.y = _netForce.y / _mass;
-	_acceleration.z = _netForce.z / _mass;
+	_acceleration.x = _force.x / _mass;
+	_acceleration.y = _force.y / _mass;
+	_acceleration.z = _force.z / _mass;
 }
 
 void ParticleModel::UpdateVertThrust()
 {
-
+	_transform->SetPosition(_transform->GetPosition().x,
+		_transform->GetPosition().y * _force.y * _acceleration.y
+		, _transform->GetPosition().z);
 }
 
 void ParticleModel::Update(float t)
@@ -110,9 +113,18 @@ void ParticleModel::Update(float t)
 		_isSpinConstVel = !_isSpinConstVel;
 	}
 
+	if (GetAsyncKeyState('A'))
+	{
+		_force.y += 10.0f;
+	}
+
+	UpdateVertThrust();
+
 	UpdateNetForce();
 
 	UpdateAccel();
+
+
 
 	if (_isConstVel)
 	{
