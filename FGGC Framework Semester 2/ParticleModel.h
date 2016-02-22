@@ -32,9 +32,17 @@ public:
 	XMFLOAT3 getSpinVel() { return _spinVelocity; }
 
 
-	void setForce(XMFLOAT3 force) { _force = force; }
-	void setForce(float x, float y, float z) { _force = { x, y, z }; }
-	XMFLOAT3 getForce() { return _force; }
+	void setThrust(XMFLOAT3 thrust) { _thrust = thrust; }
+	void setThrust(float x, float y, float z) { _thrust = { x, y, z }; }
+	XMFLOAT3 getThrust() { return _thrust; }
+
+	void setFriction(XMFLOAT3 friction) { _friction = friction; }
+	void setFriction(float x, float y, float z) { _friction = { x, y, z }; }
+	XMFLOAT3 getFriction() { return _friction; }
+
+	void setBrake(XMFLOAT3 brake) { _brake = brake; }
+	void setBrake(float x, float y, float z) { _brake = { x, y, z }; }
+	XMFLOAT3 getBrake() { return _brake; }
 
 
 	void setMass(float mass) { _mass = mass; }
@@ -83,8 +91,13 @@ private:
 	XMFLOAT3 _acceleration;
 	XMFLOAT3 _spinVelocity;
 	XMFLOAT3 _spinAccel;
-	XMFLOAT3 _force;
+
+
 	XMFLOAT3 _netForce;
+	XMFLOAT3 _friction;
+	XMFLOAT3 _thrust;
+	XMFLOAT3 _brake;
+
 	float _mass;
 	float _gravity;
 	float _weight;
