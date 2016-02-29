@@ -52,17 +52,7 @@ public:
 	float getWeight() { return _weight; }
 
 	void setUpforce(float upforce){ _upforce = upforce; }
-	float getUpforce() {
-		if (_initPos.y >= _transform->GetPosition().y)
-		{
-			_upforce = 0;
-			return _upforce;
-		}
-		else
-		{
-			return _upforce;
-		}
-	}
+	float getUpforce() { return _upforce; }
 	
 
 	bool setIsConstVel(bool isConstVel) { _isConstVel = isConstVel; }
@@ -76,10 +66,18 @@ public:
 	void spinConstAccel(float t);
 
 	void UpdateNetForce();
-
 	void UpdateAccel();
-
 	void UpdateVertThrust();
+
+	void slidingForce(float theta, float frCoef);
+	void slidingMotion(float t);
+
+	void MotionInFluid();
+	void dragForce(XMFLOAT3 vel, float dragFactor);
+	void dragLamFlow(XMFLOAT3 vel, float dragFactor);
+	void dragTurbFlow(XMFLOAT3 vel, float dragFactor);
+
+	void updateState(float t);
 
 	void Update(float t);
 
@@ -97,14 +95,18 @@ private:
 	XMFLOAT3 _friction;
 	XMFLOAT3 _thrust;
 	XMFLOAT3 _brake;
+	XMFLOAT3 _drag;
 
 	float _mass;
 	float _gravity;
 	float _weight;
 	float _upforce;
+
+	XMFLOAT3 _sForce;
 	
 
 	bool _isConstVel;
 	bool _isSpinConstVel;
+	bool _laminar;
 };
 

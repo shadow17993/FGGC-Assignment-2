@@ -104,14 +104,59 @@ void ParticleModel::UpdateVertThrust()
 	_transform->SetPosition(_transform->GetPosition().x,
 							_transform->GetPosition().y + _netForce.y,
 							_transform->GetPosition().z);
+}
+
+void ParticleModel::slidingForce(float theta, float frCoef)
+{
+	float forceMag = _mass * _gravity * (sin(theta) - frCoef * cos(theta));
+
+	_sForce.x = forceMag * cos(theta);
+	_sForce.y = forceMag * sin(theta);
+}
+
+void ParticleModel::slidingMotion(float t)
+{
+	slidingForce(0.0f, 0.5f);
+
+	updateState(t);
+	moveConstVel(t);
+}
+
+void ParticleModel::dragForce(XMFLOAT3 vel, float dragFactor)
+{
+	if (_laminar)
+	{
+		dragLamFlow(vel, dragFactor);
+	}
+	else
+	{
+		dragTurbFlow(vel, dragFactor);
+	}
+}
+
+void ParticleModel::dragLamFlow(XMFLOAT3 vel, float dragFactor)
+{
+	_drag.x = -dragFactor * vel.x;
+	_drag.y = -dragFactor * vel.y;
+	_drag.z = -dragFactor * vel.z;
+}
+
+void ParticleModel::dragTurbFlow(XMFLOAT3 vel, float dragFactor)
+{
+
+}
 
 
-	
+void ParticleModel::updateState(float t)
+{
+	UpdateNetForce();
+	UpdateAccel();
+	moveConstVel(t);
 }
 
 void ParticleModel::Update(float t)
 {
-	if (GetAsyncKeyState('S'))
+	/*if (GetAsyncKeyState('S'))
 	{
 		_isConstVel = !_isConstVel;
 	}
@@ -119,22 +164,21 @@ void ParticleModel::Update(float t)
 	if (GetAsyncKeyState('R'))
 	{
 		_isSpinConstVel = !_isSpinConstVel;
-	}
+	}*/
 
 	if (GetAsyncKeyState('A'))
 	{
-		_thrust.y = 0.00001f;
+		_thrust.y = 0.01f;
+	}
+	else if (_thrust.y >= _initPos.y)
+	{
+		_thrust.y -= 0.02f;
 	}
 
-	//UpdateVertThrust();
+	UpdateVertThrust();
+	slidingMotion(t);
 
-	UpdateNetForce();
-
-	UpdateAccel();
-
-
-
-	if (_isConstVel)
+	/*if (_isConstVel)
 	{
 		moveConstVel(t);
 	}
@@ -150,5 +194,5 @@ void ParticleModel::Update(float t)
 	else
 	{
 		spinConstAccel(t);
-	}
+	}*/
 }
