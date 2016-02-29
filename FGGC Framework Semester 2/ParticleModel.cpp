@@ -1,6 +1,5 @@
 #include "ParticleModel.h"
 
-
 ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 initVel, XMFLOAT3 initAccel) : _transform(transform)
 {
 	_isConstVel = useConstVel;
@@ -143,7 +142,18 @@ void ParticleModel::dragLamFlow(XMFLOAT3 vel, float dragFactor)
 
 void ParticleModel::dragTurbFlow(XMFLOAT3 vel, float dragFactor)
 {
+	XMFLOAT3 velMag;
+	XMStoreFloat3(&velMag, XMVector3Length(XMLoadFloat3(&vel)));
 
+
+	XMFLOAT3 unitVel;
+	XMStoreFloat3(&unitVel, XMVector3Normalize(XMLoadFloat3(&vel)));
+
+	float dragMag = dragFactor * velMag.x * velMag.x;
+
+	_drag.x = dragMag * unitVel.x;
+	_drag.y = dragMag * unitVel.y;
+	_drag.z = dragMag * unitVel.z;
 }
 
 
