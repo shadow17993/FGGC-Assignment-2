@@ -11,8 +11,8 @@ public:
 	Particle();
 	~Particle();
 
-	IPhysicalParticle* particlePhysics;
-	IDrawableParticle* drawableParticle;
+	/*IPhysicalParticle* particlePhysics;
+	IDrawableParticle* drawableParticle;*/
 	void Update(float t);
 	void Draw();
 };

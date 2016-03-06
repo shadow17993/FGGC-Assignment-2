@@ -19,6 +19,7 @@ ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 in
 	_gravity = -9.8f;
 	_weight = _mass * _gravity;
 	_initPos = _transform->GetPosition();
+
 }
 
 

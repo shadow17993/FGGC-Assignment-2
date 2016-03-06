@@ -53,6 +53,9 @@ public:
 
 	void setUpforce(float upforce){ _upforce = upforce; }
 	float getUpforce() { return _upforce; }
+
+	void setRadius(float radius){ _radius = radius; }
+	float getRadius() { return _radius; }
 	
 
 	bool setIsConstVel(bool isConstVel) { _isConstVel = isConstVel; }
@@ -101,6 +104,8 @@ private:
 	float _gravity;
 	float _weight;
 	float _upforce;
+
+	float _radius;
 
 	XMFLOAT3 _sForce;
 	
