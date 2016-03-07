@@ -750,11 +750,23 @@ void Application::Update()
 	_camera->Update();
 
 	// Update objects
-	for (auto gameObject : _gameObjects)
+	for (int i = 0; i < _gameObjects.size(); i++)
 	{
-		gameObject->Update(timeSinceStart);
-	}
+		_gameObjects[i]->Update(timeSinceStart);
+		for (int j = i + 1; j < _gameObjects.size() - i; j++)
+		{
+			ParticleModel * particleModel = _gameObjects[i]->GetParticleModel();
 
+			if (particleModel)
+			{
+				if (particleModel->CollisionCheck(_gameObjects[j]->GetTransform()->GetPosition(), _gameObjects[j]->GetParticleModel()->getRadius()))
+				{
+					particleModel->setVel(0, 0, 0);
+					particleModel->setVel(0, 0, 0);
+				}
+			}
+		}
+	}
 	Sleep(timeSinceStart);
 }
 

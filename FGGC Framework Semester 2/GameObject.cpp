@@ -8,6 +8,7 @@ GameObject::GameObject(string type, Transform* transform, ParticleModel* particl
 GameObject::GameObject(string type, Transform* transform, Appearance* appearance) : _type(type), _transform(transform), _appearance(appearance)
 {
 	isMoving = false;
+	_particleModel = nullptr;
 }
 
 GameObject::~GameObject()
@@ -22,8 +23,6 @@ void GameObject::Update(float t)
 	{
 		_particleModel->Update(t);
 	}
-
-	
 }
 
 void GameObject::Draw(ID3D11DeviceContext * pImmediateContext)

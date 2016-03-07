@@ -20,6 +20,7 @@ ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 in
 	_weight = _mass * _gravity;
 	_initPos = _transform->GetPosition();
 
+	_radius = 1.0f;
 }
 
 
@@ -166,10 +167,9 @@ bool ParticleModel::CollisionCheck(XMFLOAT3 pos, float radius)
 		_transform->GetPosition().z - pos.z,
 	};
 
-	XMVECTOR vl = XMLoadFloat3(&v);
-	XMVECTOR dist = XMVector3Length(vl);
+	float dist = sqrt((v.x*v.x) + (v.y*v.y) + (v.z*v.z));
 	
-	if (dist < (radius + _radius))
+	if (dist < (radius + getRadius()))
 	{
 		return true;
 	}
@@ -201,9 +201,15 @@ void ParticleModel::Update(float t)
 	{
 		_thrust.y = 0.01f;
 	}
-	else if (_thrust.y >= _initPos.y)
+	else if (_transform->GetPosition().y > _initPos.y)
 	{
-		_thrust.y -= 0.02f;
+		_thrust.y -= 0.0005f;
+	}
+
+	if (_transform->GetPosition().y < _initPos.y)
+	{
+		setThrust(0, 0, 0);
+		_transform->SetPosition(_initPos);
 	}
 
 	UpdateVertThrust();
