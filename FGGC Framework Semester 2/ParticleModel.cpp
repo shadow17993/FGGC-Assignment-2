@@ -157,6 +157,26 @@ void ParticleModel::dragTurbFlow(XMFLOAT3 vel, float dragFactor)
 	_drag.z = dragMag * unitVel.z;
 }
 
+bool ParticleModel::CollisionCheck(XMFLOAT3 pos, float radius)
+{
+	XMFLOAT3 v =
+	{
+		_transform->GetPosition().x - pos.x,
+		_transform->GetPosition().y - pos.y,
+		_transform->GetPosition().z - pos.z,
+	};
+
+	XMVECTOR vl = XMLoadFloat3(&v);
+	XMVECTOR dist = XMVector3Length(vl);
+	
+	if (dist < (radius + _radius))
+	{
+		return true;
+	}
+
+	return false;
+}
+
 
 void ParticleModel::updateState(float t)
 {

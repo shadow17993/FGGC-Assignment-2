@@ -80,6 +80,8 @@ public:
 	void dragLamFlow(XMFLOAT3 vel, float dragFactor);
 	void dragTurbFlow(XMFLOAT3 vel, float dragFactor);
 
+	bool CollisionCheck(XMFLOAT3 pos, float radius);
+
 	void updateState(float t);
 
 	void Update(float t);
