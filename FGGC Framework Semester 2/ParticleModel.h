@@ -82,6 +82,8 @@ public:
 
 	bool CollisionCheck(XMFLOAT3 pos, float radius);
 
+	
+
 	void updateState(float t);
 
 	void Update(float t);
@@ -94,7 +96,6 @@ private:
 	XMFLOAT3 _acceleration;
 	XMFLOAT3 _spinVelocity;
 	XMFLOAT3 _spinAccel;
-
 
 	XMFLOAT3 _netForce;
 	XMFLOAT3 _friction;
@@ -110,7 +111,6 @@ private:
 	float _radius;
 
 	XMFLOAT3 _sForce;
-	
 
 	bool _isConstVel;
 	bool _isSpinConstVel;

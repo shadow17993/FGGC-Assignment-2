@@ -143,6 +143,8 @@ public:
 
 	bool HandleKeyboard(MSG msg);
 
+	void ResolveCollision(ParticleModel* pm1, ParticleModel* pm2);
+
 	void Update();
 	void Draw();
 };

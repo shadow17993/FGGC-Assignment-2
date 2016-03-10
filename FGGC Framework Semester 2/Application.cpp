@@ -845,3 +845,8 @@ void Application::Draw()
     //
     _pSwapChain->Present(0, 0);
 }
+
+void Application::ResolveCollision(ParticleModel* pm1, ParticleModel* pm2)
+{
+	
+}

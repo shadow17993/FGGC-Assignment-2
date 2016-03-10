@@ -18,6 +18,7 @@ public:
 	void SetPosition(float x, float y, float z) { _position.x = x; _position.y = y; _position.z = z; }
 
 	XMFLOAT3 GetPosition() const { return _position; }
+	XMFLOAT3 GetLastPosition() { return _lPosition; }
 
 
 	void SetScale(XMFLOAT3 scale) { _scale = scale; }
@@ -31,16 +32,16 @@ public:
 
 	XMFLOAT3 GetRotation() const { return _rotation; }
 
-
 	void Update(float t);
 
 private:
 	XMFLOAT3 _position;
 	XMFLOAT3 _rotation;
 	XMFLOAT3 _scale;
-	
 
 	XMFLOAT4X4 _world;
+
+	XMFLOAT3 _lPosition;
 
 	Transform * _parent;
 };

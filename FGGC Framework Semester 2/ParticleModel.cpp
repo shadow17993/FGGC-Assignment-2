@@ -199,11 +199,11 @@ void ParticleModel::Update(float t)
 
 	if (GetAsyncKeyState('A'))
 	{
-		_thrust.y = 0.01f;
+		_thrust.y = 0.03f;
 	}
 	else if (_transform->GetPosition().y > _initPos.y)
 	{
-		_thrust.y -= 0.0005f;
+		_thrust.y -= 0.0015f;
 	}
 
 	if (_transform->GetPosition().y < _initPos.y)

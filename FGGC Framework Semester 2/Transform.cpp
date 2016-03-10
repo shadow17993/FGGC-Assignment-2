@@ -28,4 +28,6 @@ void Transform::Update(float t)
 	{
 		XMStoreFloat4x4(&_world, this->GetWorldMatrix() * _parent->GetWorldMatrix());
 	}
+
+	_lPosition = GetPosition();
 }
