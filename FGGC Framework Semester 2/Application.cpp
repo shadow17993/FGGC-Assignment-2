@@ -674,21 +674,23 @@ void Application::moveBackward(int objectNumber)
 
 void Application::Update()
 {
-    // Update our time
-    static float timeSinceStart = 0.0f;
-    static DWORD dwTimeStart = 0;
+ //   // Update our time
+ //   static float timeSinceStart = 0.0f;
+ //   static DWORD dwTimeStart = 0;
 
-    DWORD dwTimeCur = GetTickCount();
+ //   DWORD dwTimeCur = GetTickCount();
 
-    if (dwTimeStart == 0)
-        dwTimeStart = dwTimeCur;
+ //   if (dwTimeStart == 0)
+ //       dwTimeStart = dwTimeCur;
 
-	timeSinceStart = (dwTimeCur - dwTimeStart) / 1000.0f;
+	//timeSinceStart = (dwTimeCur - dwTimeStart) / 1000.0f;
+
+	float timeSinceStart = 0.01667;
 
 	// Move gameobject
 	if (GetAsyncKeyState('1'))
 	{
-		moveForward(1);
+		_gameObjects[0]->GetParticleModel()->setThrust(0.0f, 0.003f, 0.0f);
 	}
 
 	if (GetAsyncKeyState('2'))
@@ -748,6 +750,8 @@ void Application::Update()
 
 	_camera->SetPosition(cameraPos);
 	_camera->Update();
+
+	
 
 	// Update objects
 	for (int i = 0; i < _gameObjects.size(); i++)
@@ -848,5 +852,6 @@ void Application::Draw()
 
 void Application::ResolveCollision(ParticleModel* pm1, ParticleModel* pm2)
 {
-	
+	pm1->getTransform()->SetPosition(pm1->getTransform()->GetLastPosition());
+	pm2->getTransform()->SetPosition(pm2->getTransform()->GetLastPosition());
 }

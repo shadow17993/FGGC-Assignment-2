@@ -187,7 +187,7 @@ void ParticleModel::updateState(float t)
 
 void ParticleModel::Update(float t)
 {
-	/*if (GetAsyncKeyState('S'))
+	if (GetAsyncKeyState('S'))
 	{
 		_isConstVel = !_isConstVel;
 	}
@@ -195,17 +195,13 @@ void ParticleModel::Update(float t)
 	if (GetAsyncKeyState('R'))
 	{
 		_isSpinConstVel = !_isSpinConstVel;
-	}*/
-
-	if (GetAsyncKeyState('A'))
-	{
-		_thrust.y = 0.03f;
-	}
-	else if (_transform->GetPosition().y > _initPos.y)
-	{
-		_thrust.y -= 0.0015f;
 	}
 
+	if (_transform->GetPosition().y > _initPos.y)
+	{
+		_thrust.y -= 0.00015f;
+	}
+	
 	if (_transform->GetPosition().y < _initPos.y)
 	{
 		setThrust(0, 0, 0);
@@ -215,7 +211,7 @@ void ParticleModel::Update(float t)
 	UpdateVertThrust();
 	slidingMotion(t);
 
-	/*if (_isConstVel)
+	if (_isConstVel)
 	{
 		moveConstVel(t);
 	}
@@ -231,5 +227,5 @@ void ParticleModel::Update(float t)
 	else
 	{
 		spinConstAccel(t);
-	}*/
+	}
 }

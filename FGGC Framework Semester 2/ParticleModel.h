@@ -82,7 +82,7 @@ public:
 
 	bool CollisionCheck(XMFLOAT3 pos, float radius);
 
-	
+	Transform* getTransform() { return _transform; }
 
 	void updateState(float t);
 

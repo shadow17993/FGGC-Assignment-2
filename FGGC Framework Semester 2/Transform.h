@@ -18,8 +18,8 @@ public:
 	void SetPosition(float x, float y, float z) { _position.x = x; _position.y = y; _position.z = z; }
 
 	XMFLOAT3 GetPosition() const { return _position; }
-	XMFLOAT3 GetLastPosition() { return _lPosition; }
 
+	XMFLOAT3 GetLastPosition() { return _lPosition; }
 
 	void SetScale(XMFLOAT3 scale) { _scale = scale; }
 	void SetScale(float x, float y, float z) { _scale.x = x; _scale.y = y; _scale.z = z; }
