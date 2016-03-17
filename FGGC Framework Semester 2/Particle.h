@@ -19,7 +19,13 @@ public:
 	IPhysicalParticle* particlePhysics;
 	IDrawableParticle* drawablePhysics;
 
+	
+
 	void Update(float t);
 	void Draw();
+
+private:
+
+
 };
 

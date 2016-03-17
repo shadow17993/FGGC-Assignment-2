@@ -6,20 +6,25 @@
 #include <directxmath.h>
 #include <directxcolors.h>
 #include "Particle.h"
+#include <vector>
+#include "GameObject.h"
 
 using namespace DirectX;
+using namespace std;
 
 class ParticleSystem
 {
 public:
-	ParticleSystem();
+	ParticleSystem(XMFLOAT3 pos);
 	~ParticleSystem();
 
 	void Update(float t);
 	void Draw();
 
 private:
-	int numParticle;
-	Particle* p;
+
+	vector<GameObject*> particles;
+	XMFLOAT3 _pos;
+
 };
 

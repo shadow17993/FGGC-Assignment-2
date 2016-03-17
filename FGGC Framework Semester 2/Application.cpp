@@ -690,7 +690,7 @@ void Application::Update()
 	// Move gameobject
 	if (GetAsyncKeyState('1'))
 	{
-		_gameObjects[0]->GetParticleModel()->setThrust(0.0f, 0.003f, 0.0f);
+		moveForward(1);
 	}
 
 	if (GetAsyncKeyState('2'))

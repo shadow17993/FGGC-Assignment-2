@@ -20,6 +20,8 @@ ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 in
 	_weight = _mass * _gravity;
 	_initPos = _transform->GetPosition();
 
+	_energy = rand() % 1000 + 2000;
+
 	_radius = 1.0f;
 }
 
@@ -195,6 +197,11 @@ void ParticleModel::Update(float t)
 	if (GetAsyncKeyState('R'))
 	{
 		_isSpinConstVel = !_isSpinConstVel;
+	}
+
+	if (GetAsyncKeyState('A'))
+	{
+		_thrust.y = 0.03f;
 	}
 
 	if (_transform->GetPosition().y > _initPos.y)

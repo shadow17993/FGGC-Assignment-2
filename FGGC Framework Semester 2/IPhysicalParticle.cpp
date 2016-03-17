@@ -9,3 +9,13 @@ IPhysicalParticle::IPhysicalParticle(XMFLOAT3 position, XMFLOAT3 velocity, XMFLO
 IPhysicalParticle::~IPhysicalParticle()
 {
 }
+
+void IPhysicalParticle::Update(float t)
+{
+
+}
+
+void IPhysicalParticle::ApplyForce(XMFLOAT3 &force)
+{
+
+}

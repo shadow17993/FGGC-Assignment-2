@@ -56,7 +56,9 @@ public:
 
 	void setRadius(float radius){ _radius = radius; }
 	float getRadius() { return _radius; }
-	
+
+	void setEnergy(int energy){ _energy = energy; }
+	int getEnergy(){ return _energy; }
 
 	bool setIsConstVel(bool isConstVel) { _isConstVel = isConstVel; }
 	bool setIsSpinConstVel(bool isSpinConstVel) { _isSpinConstVel = isSpinConstVel; }
@@ -107,6 +109,7 @@ private:
 	float _gravity;
 	float _weight;
 	float _upforce;
+	int _energy;
 
 	float _radius;
 
