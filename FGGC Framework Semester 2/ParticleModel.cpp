@@ -20,8 +20,6 @@ ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 in
 	_weight = _mass * _gravity;
 	_initPos = _transform->GetPosition();
 
-	_energy = rand() % 1000 + 2000;
-
 	_radius = 1.0f;
 }
 
@@ -235,4 +233,9 @@ void ParticleModel::Update(float t)
 	{
 		spinConstAccel(t);
 	}
+}
+
+void ParticleModel::UpdateParticle(float t)
+{
+	updateState(t);
 }

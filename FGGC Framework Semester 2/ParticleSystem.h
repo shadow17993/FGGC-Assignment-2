@@ -15,16 +15,20 @@ using namespace std;
 class ParticleSystem
 {
 public:
-	ParticleSystem(XMFLOAT3 pos);
+	ParticleSystem(Transform* transform);
 	~ParticleSystem();
 
+	Transform* getTransform(){ return _transform; }
+
+
 	void Update(float t);
-	void Draw();
+	void Draw(ID3D11DeviceContext * pImmediateContext);
 
 private:
 
-	vector<GameObject*> particles;
+	vector<Particle*> particles;
 	XMFLOAT3 _pos;
 
+	Transform* _transform;
 };
 

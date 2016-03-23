@@ -7,25 +7,35 @@
 #include <directxcolors.h>
 #include "IDrawableParticle.h"
 #include "IPhysicalParticle.h"
+#include "ParticleModel.h"
+#include "Appearance.h"
+#include <string>
 
 using namespace DirectX;
 
 class Particle
 {
 public:
-	Particle();
+	Particle(string type, Transform* transform, ParticleModel* particleModel, Appearance* appearance);
 	~Particle();
 
-	IPhysicalParticle* particlePhysics;
-	IDrawableParticle* drawablePhysics;
+	Transform * GetTransform() const { return _transform; }
+	ParticleModel * GetParticleModel() const { return _particlePhysics; }
+	Appearance * GetAppearance() const { return _drawablePhysics; }
 
-	
+	void setEnergy(int energy){ _energy = energy; }
+	int getEnergy(){ return _energy; }
 
 	void Update(float t);
-	void Draw();
+	void Draw(ID3D11DeviceContext * pImmediateContext);
 
 private:
 
+	Transform* _transform;
+	string _type;
+	ParticleModel* _particlePhysics;
+	Appearance* _drawablePhysics;
 
+	int _energy;
 };
 

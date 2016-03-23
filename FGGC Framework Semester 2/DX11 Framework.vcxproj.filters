@@ -21,6 +21,8 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="ParticleModel.h" />
     <ClInclude Include="Appearance.h" />
+    <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="Particle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -31,6 +33,8 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="ParticleModel.cpp" />
     <ClCompile Include="Appearance.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="Particle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
