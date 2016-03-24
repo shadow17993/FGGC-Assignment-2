@@ -1,11 +1,15 @@
 #include "Particle.h"
 
 
-Particle::Particle(string type, Transform* transform, ParticleModel* particleModel, Appearance* appearance) : _transform(transform), _particlePhysics(particleModel), _drawablePhysics(appearance)
+Particle::Particle(Transform* transform, ParticleModel* particleModel, Appearance* appearance) : _transform(transform), _particlePhysics(particleModel), _drawablePhysics(appearance)
 {
 	_energy = rand() % 300;
 }
 
+Particle::Particle(Transform* transform, ParticleModel* particleModel) : _transform(transform), _particlePhysics(particleModel)
+{
+	_energy = rand() % 300;
+}
 
 Particle::~Particle()
 {

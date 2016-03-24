@@ -151,8 +151,6 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	floorTransform->SetPosition(0.0f, 0.0f, 0.0f);
 	floorTransform->SetScale(15.0f, 15.0f, 15.0f);
 	floorTransform->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
-
-	//ParticleModel* particleModel = new ParticleModel(floorTransform);
 	
 	GameObject * gameObject = new GameObject("Floor", floorTransform, floorAppearance);
 

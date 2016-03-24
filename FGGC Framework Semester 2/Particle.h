@@ -16,7 +16,8 @@ using namespace DirectX;
 class Particle
 {
 public:
-	Particle(string type, Transform* transform, ParticleModel* particleModel, Appearance* appearance);
+	Particle(Transform* transform, ParticleModel* particleModel, Appearance* appearance);
+	Particle(Transform* transform, ParticleModel* particleModel);
 	~Particle();
 
 	Transform * GetTransform() const { return _transform; }
@@ -32,7 +33,6 @@ public:
 private:
 
 	Transform* _transform;
-	string _type;
 	ParticleModel* _particlePhysics;
 	Appearance* _drawablePhysics;
 

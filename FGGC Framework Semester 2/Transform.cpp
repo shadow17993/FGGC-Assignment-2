@@ -9,6 +9,29 @@ Transform::Transform()
 	_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
 }
 
+Transform::Transform(Transform* parent)
+{
+	_parent = parent;
+	_position = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	_rotation = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
+}
+
+Transform::Transform(Transform* parent, XMFLOAT3 position)
+{
+	_parent = nullptr;
+	_position = position;
+	_rotation = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
+}
+
+Transform::Transform(Transform* parent, XMFLOAT3 position, XMFLOAT3 rotation, XMFLOAT3 scale)
+{
+	_parent = nullptr;
+	_position = position;
+	_rotation = rotation;
+	_scale = scale;
+}
 
 Transform::~Transform()
 {

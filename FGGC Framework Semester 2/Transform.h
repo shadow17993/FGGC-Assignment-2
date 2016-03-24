@@ -7,6 +7,10 @@ class Transform
 {
 public:
 	Transform();
+	Transform(Transform* parent);
+	Transform(Transform* parent, XMFLOAT3 position);
+	Transform(Transform* parent, XMFLOAT3 position,  XMFLOAT3 rotation, XMFLOAT3 scale);
+
 	~Transform();
 
 	void SetParent(Transform * parent) { _parent = parent; }
