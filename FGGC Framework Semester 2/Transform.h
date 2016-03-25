@@ -17,7 +17,6 @@ public:
 
 	XMMATRIX GetWorldMatrix() const { return XMLoadFloat4x4(&_world); }
 
-
 	void SetPosition(XMFLOAT3 position) { _position = position; }
 	void SetPosition(float x, float y, float z) { _position.x = x; _position.y = y; _position.z = z; }
 

@@ -17,7 +17,7 @@ Particle::~Particle()
 
 void Particle::Update(float t)
 {
-	_particlePhysics->Update(t);
+	_particlePhysics->UpdateParticle(t);
 
 	// Reduces energy with each frame
 	_energy--;

@@ -15,10 +15,11 @@ using namespace std;
 class ParticleSystem
 {
 public:
-	ParticleSystem(Transform* transform);
+	ParticleSystem(Transform* transform, XMFLOAT3 offsetPos, Appearance* particleApp);
 	~ParticleSystem();
 
 	Transform* getTransform(){ return _transform; }
+	Appearance* getAppearance(){ return _particleApp; }
 
 
 	void Update(float t);
@@ -27,8 +28,9 @@ public:
 private:
 
 	vector<Particle*> particles;
-	XMFLOAT3 _pos;
 
 	Transform* _transform;
+	XMFLOAT3 _offsetPos;
+	Appearance* _particleApp;
 };
 

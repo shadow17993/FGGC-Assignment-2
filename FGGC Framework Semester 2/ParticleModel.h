@@ -10,6 +10,7 @@ class ParticleModel
 {
 public:
 	ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 initVel, XMFLOAT3 initAccel);
+	ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 initVel, XMFLOAT3 initAccel, XMFLOAT3 thrust);
 	~ParticleModel();
 
 	void setAccel(XMFLOAT3 acceleration) { _acceleration = acceleration; }

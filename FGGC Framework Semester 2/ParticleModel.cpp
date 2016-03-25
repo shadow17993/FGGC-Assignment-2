@@ -23,6 +23,29 @@ ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 in
 	_radius = 1.0f;
 }
 
+ParticleModel::ParticleModel(Transform* transform, bool useConstVel, XMFLOAT3 initVel, XMFLOAT3 initAccel, XMFLOAT3 thrust) : _transform(transform)
+{
+	_isConstVel = useConstVel;
+	_isSpinConstVel = true;
+
+	_velocity = initVel;
+	_acceleration = initAccel;
+	_spinVelocity = { 0.0f, 0.001f, 0.0f };
+	_spinAccel = { 0.0f, 0.001f, 0.0f };
+
+	_thrust = thrust;
+	_brake = { 0.0f, 0.0f, 0.0f };
+	_friction = { 0.0f, 0.0f, 0.0f };
+	_netForce = { 0.0f, 0.0f, 0.0f };
+
+	_mass = 1.0f;
+	_gravity = -9.8f;
+	_weight = _mass * _gravity;
+	_initPos = _transform->GetPosition();
+
+	_radius = 1.0f;
+}
+
 
 ParticleModel::~ParticleModel()
 {

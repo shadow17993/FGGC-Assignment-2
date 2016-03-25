@@ -19,7 +19,7 @@ Transform::Transform(Transform* parent)
 
 Transform::Transform(Transform* parent, XMFLOAT3 position)
 {
-	_parent = nullptr;
+	_parent = parent;
 	_position = position;
 	_rotation = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
@@ -27,7 +27,7 @@ Transform::Transform(Transform* parent, XMFLOAT3 position)
 
 Transform::Transform(Transform* parent, XMFLOAT3 position, XMFLOAT3 rotation, XMFLOAT3 scale)
 {
-	_parent = nullptr;
+	_parent = parent;
 	_position = position;
 	_rotation = rotation;
 	_scale = scale;
