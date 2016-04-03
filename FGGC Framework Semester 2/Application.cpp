@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "ParticleSystem.h"
+#include "GameObject.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -168,14 +169,14 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 		gameObject = new GameObject("Cube " + i, cubeTransform, particleModel, cubeAppearance);
 
 		_gameObjects.push_back(gameObject);
-
+/*
 		Transform * psTransform = new Transform();
 		psTransform->SetScale(0.5f, 0.5f, 0.5f);
 		psTransform->SetPosition(cubeTransform->GetPosition());
 
 		ParticleSystem* ps = new ParticleSystem(psTransform, { 0.0f, 0.0f, 0.0f }, cubeAppearance);
 
-		_particleSystem.push_back(ps);
+		_particleSystem.push_back(ps);*/
 	}
 
 	return S_OK;
@@ -766,11 +767,11 @@ void Application::Update()
 			}
 		}
 	}
-
+/*
 	for (int i = 0; i < _particleSystem.size(); i++)
 	{
 		_particleSystem[i]->Update(timeSinceStart);
-	}
+	}*/
 
 
 	Sleep(timeSinceStart);
@@ -845,38 +846,6 @@ void Application::Draw()
 		// Draw object
 		gameObject->Draw(_pImmediateContext);
 	}
-
-	//for (auto particleSystem : _particleSystem)
-	//{
-	//	// Get render material
-	//	Material material = particleSystem->getAppearance()->GetMaterial();
-
-	//	// Copy material to shader
-	//	cb.surface.AmbientMtrl = material.ambient;
-	//	cb.surface.DiffuseMtrl = material.diffuse;
-	//	cb.surface.SpecularMtrl = material.specular;
-
-	//	// Set world matrix
-	//	cb.World = XMMatrixTranspose(particleSystem->getTransform()->GetWorldMatrix());
-
-	//	// Set texture
-	//	if (particleSystem->getAppearance()->HasTexture())
-	//	{
-	//		ID3D11ShaderResourceView * textureRV = particleSystem->getAppearance()->GetTextureRV();
-	//		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-	//		cb.HasTexture = 1.0f;
-	//	}
-	//	else
-	//	{
-	//		cb.HasTexture = 0.0f;
-	//	}
-
-	//	// Update constant buffer
-	//	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	//	// Draw object
-	//	particleSystem->Draw(_pImmediateContext);
-	//}
 
     //
     // Present our back buffer to our front buffer
